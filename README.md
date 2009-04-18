@@ -1,4 +1,5 @@
-== About
+About
+====
 
 Little pluging, that make one sql-update per 100 (by default, you can make 1000 or 10) for each page request. Its use cookies to store information about user's views and Rails.cache for buffer.
 
