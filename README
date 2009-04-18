@@ -4,6 +4,10 @@ Little pluging, that make one sql-update per 100 (by default, you can make 1000 
 
 == Usage
 
+# Install
+
+./script/plugin install git://github.com/preprocessor/page_views.git
+
 # Create migration
 
 ./script/generate page_views Post
@@ -36,3 +40,7 @@ days — how many days to store information about pages user visit in the cookie
 with_page_views :with_buffer => false
 
 with_buffer — not advised to switch off, even if you do not have memcache rails used by default MemoryStore. 
+
+== ToDo
+
+tests :)
