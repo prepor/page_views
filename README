@@ -2,7 +2,8 @@
 
 Little pluging, that make one sql-update per 100 (by default, you can make 1000 or 10) for each page request. Its use cookies to store information about user's views and Rails.cache for buffer.
 
-== Usage
+Usage
+====
 
 # Install
 
@@ -29,7 +30,8 @@ def increment_page_views
 end
 
 
-== Options
+Options
+====
 
 with_page_views :buffer_size => 1000, :days => 3
 
@@ -41,6 +43,7 @@ with_page_views :with_buffer => false
 
 with_buffer — not advised to switch off, even if you do not have memcache rails used by default MemoryStore. 
 
-== ToDo
+ToDo
+====
 
 tests :)
