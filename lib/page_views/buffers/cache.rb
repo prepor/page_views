@@ -18,7 +18,7 @@ module PageViews::Buffers
     end
     
     def page_views_cache_key
-      "#{self.class.name.underscore}_page_views_#{page_views_id}"
+      "#{page_views_options[:model_name]}_page_views_#{page_views_id}"
     end
   end
 end
