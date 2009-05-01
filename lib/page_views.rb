@@ -56,9 +56,8 @@ module PageViews
     end
     
     def page_views_clear_cookies(cookies)
-      require 'ruby-debug'
-      debugger
-      cookies.delete_if {|k, v| k < page_views_options[:days].days.ago.strftime('%d%m')}
+      PageViews.array_to_hash(cookies.sort_by {|k, v| v}.reverse[0...2]) #how about new year?
+      # cookies.delete_if {|k, v| k < page_views_options[:days].days.ago.strftime('%m%d')}
     end
         
     def already_view_page?(cookies)
@@ -70,7 +69,7 @@ module PageViews
     end
     
     def page_views_cookie_key
-      @page_views_cookie_key ||= Time.now.strftime('%d%m')
+      @page_views_cookie_key ||= Time.now.strftime('%m%d')
     end
     
     def page_views_field_value
@@ -82,5 +81,14 @@ module PageViews
     
 
   end
+  
+  def self.array_to_hash(array)
+    r = {}
+    array.each do |v|
+      r[v[0]] = v[1]
+    end
+    r
+  end
+    
   
 end

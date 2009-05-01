@@ -21,7 +21,7 @@ class UnitTest < Test::Unit::TestCase
       end
       
       should "cookies be right" do
-        assert_equal({'post' => {Time.now.strftime('%d%m') => [@post.id]}}, Marshal.load(@cookies))
+        assert_equal({'post' => {Time.now.strftime('%m%d') => [@post.id]}}, Marshal.load(@cookies))
       end
       
       context "and second view" do
@@ -32,7 +32,20 @@ class UnitTest < Test::Unit::TestCase
         should "has counter == 1" do
           assert_equal @post.page_views_counter, 1
         end
-      end      
+      end 
+      
+      context "with custom model name" do
+        setup do
+          rebuild_models(:model_name => 'test_name')
+          @post = Post.create :name => 'second'
+          @cookies = @post.page_views_add(nil)
+        end
+      
+        should "description" do
+          assert_equal({'test_name' => {Time.now.strftime('%m%d') => [@post.id]}}, Marshal.load(@cookies))
+        end
+      end
+           
       # context "and second view after 3 days" do
       #   setup do
       #     time = 3.days.since

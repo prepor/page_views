@@ -16,19 +16,22 @@ ActiveRecord::Base.establish_connection(config['test'])
 
 
 
-def rebuild_models
+def rebuild_models(options = {})
   ActiveRecord::Base.connection.create_table :posts, :force => true do |table|
     table.column :name, :string
     table.column :page_views_counter, :integer, :default => 0
   end
-  rebuild_classes
+  rebuild_classes(options)
 end
 
-def rebuild_classes
+def rebuild_classes(options = {})
   PageViews::enable
+  end_options = {:with_buffer => false}.merge(options)
   Object.send(:remove_const, "Post") rescue nil
   Object.const_set("Post", Class.new(ActiveRecord::Base))
   Post.class_eval do
-    with_page_views :with_buffer => false
+    with_page_views(end_options)
   end
+  # #{end_options}"
+
 end

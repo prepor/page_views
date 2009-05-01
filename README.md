@@ -34,7 +34,7 @@ Controller:
 Options
 ====
 
-	with_page_views :buffer_size => 1000, :days => 3
+	with_page_views :buffer_size => 1000, :days => 3, :model_name => 'post'
 
 buffer_size — how often to write down the value buffer in the database
 
@@ -43,6 +43,8 @@ days — how many days to store information about pages user visit in the cookie
 	with_page_views :with_buffer => false
 
 with_buffer — not advised to switch off, even if you do not have memcache rails used by default MemoryStore. 
+
+model_name — custom name of model for keys in cookies and cache
 
 ToDo
 ====
