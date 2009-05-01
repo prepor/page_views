@@ -30,6 +30,10 @@ Controller:
 	  page_views_increment @post #load @post before
 	end
 
+View:
+        
+       @post.page_views
+
 
 Options
 ====
